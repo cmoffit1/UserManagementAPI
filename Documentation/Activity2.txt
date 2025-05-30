@@ -1,0 +1,22 @@
+I implemented concurrent dictionaries as that came up in the video.
+
+I asked copilot ot analyze the project for missing validation for user input. It noted that I had already implemented annotations for Required, stringlength, and email address.
+I did suggest that the UsersController be updated with some recommendations like IsvValid for the model state.  So I implemented the recommendations.  
+This included a check in the createuser for duplicate email addresses.
+
+Copilot had already included the error handling for failed dictionary lookups, but found it could improve so I let it implement those changes
+
+I then asked if there are any performance bottlenecks.  It identified one int duplicate email check and one for ID generation.  THe id generation needs to be thread safe. 
+
+For validation for data in Step 3, it recommends an enum for departments and trimming the data for whitesace and lowercasing the email address.  I will impelment these.
+
+Copilot did not recommend try-catch blocks as the code is well structured and the try-catch blocks are not needed. 
+
+FOr optimzation it recommended an Enum for Departments and that it be in a file in the models for Swagger documentation and automatic error handling.  
+
+I had copilot write a bunch of new test cases in my UserManagementAPI.http including edge cases and error states.
+
+I then ran the code and had a problem with the department conversion.  I asked copilot to resolve the issue
+it had me update program.cs to add in an option for the jsonserializationoptions.  
+
+I ran all the test cases and they all now work :)

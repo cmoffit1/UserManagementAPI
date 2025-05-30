@@ -1,0 +1,150 @@
+@UserManagementAPI_HostAddress = http://localhost:5152
+
+### Login (valid)
+POST http://localhost:5152/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "testpassword"
+}
+
+
+
+### Get all users
+GET http://localhost:5152/api/users
+Accept: application/json
+Authorization: Bearer <Your Token here>
+
+### Create a new user (valid)
+POST http://localhost:5152/api/users
+Content-Type: application/json
+Authorization: Bearer <Your Token here>
+
+{
+  "firstName": "Alice",
+  "lastName": "Smith",
+  "emailAddress": "alice.smith@example.com",
+  "department": "Engineering"
+}
+
+### Create another valid user
+POST http://localhost:5152/api/users
+Content-Type: application/json
+Authorization: Bearer <Your Token here>
+
+{
+  "firstName": "Bob",
+  "lastName": "Johnson",
+  "emailAddress": "bob.johnson@example.com",
+  "department": "HR"
+}
+
+### Create a user with duplicate email (should fail)
+POST http://localhost:5152/api/users
+Content-Type: application/json
+Authorization: Bearer <Your Token here>
+
+{
+  "firstName": "Alicia",
+  "lastName": "Brown",
+  "emailAddress": "alice.smith@example.com",
+  "department": "Sales"
+}
+
+### Create a user with invalid email (should fail)
+POST http://localhost:5152/api/users
+Content-Type: application/json
+Authorization: Bearer <Your Token here>
+
+{
+  "firstName": "Charlie",
+  "lastName": "Davis",
+  "emailAddress": "not-an-email",
+  "department": "Marketing"
+}
+
+### Create a user with missing required field (should fail)
+POST http://localhost:5152/api/users
+Content-Type: application/json
+Authorization: Bearer <Your Token here>
+
+{
+  "lastName": "Evans",
+  "emailAddress": "evans@example.com",
+  "department": "Engineering"
+}
+
+### Create a user with invalid department (should fail)
+POST http://localhost:5152/api/users
+Content-Type: application/json
+Authorization: Bearer <Your Token here>
+
+{
+  "firstName": "Dana",
+  "lastName": "White",
+  "emailAddress": "dana.white@example.com",
+  "department": "InvalidDept"
+}
+
+### Create a user with too long first name (should fail)
+POST http://localhost:5152/api/users
+Content-Type: application/json
+Authorization: Bearer <Your Token here>
+
+{
+  "firstName": "ThisFirstNameIsWayTooLongToBeAcceptedByTheValidationBecauseItExceedsFiftyCharacters",
+  "lastName": "Long",
+  "emailAddress": "long.name@example.com",
+  "department": "Sales"
+}
+
+### Get a user by ID (should succeed)
+GET http://localhost:5152/api/users/2
+Accept: application/json
+Authorization: Bearer <Your Token here>
+
+### Get a user by invalid ID (should fail)
+GET http://localhost:5152/api/users/999
+Accept: application/json
+Authorization: Bearer <Your Token here>
+
+### Update a user (valid)
+PUT http://localhost:5152/api/users/2
+Content-Type: application/json
+Authorization: Bearer <Your Token here>
+
+{
+  "firstName": "Alice",
+  "lastName": "Johnson",
+  "emailAddress": "alice.johnson@example.com",
+  "department": "Engineering"
+}
+
+### Update a user with duplicate email (should fail)
+PUT http://localhost:5152/api/users/2
+Content-Type: application/json
+Authorization: Bearer <Your Token here>
+
+{
+  "firstName": "Bob",
+  "lastName": "Johnson",
+  "emailAddress": "alice.johnson@example.com",
+  "department": "HR"
+}
+
+### Delete a user (should succeed)
+DELETE http://localhost:5152/api/users/2
+Authorization: Bearer <Your Token here>
+
+### Delete a user that does not exist (should fail)
+DELETE http://localhost:5152/api/users/999
+Authorization: Bearer <Your Token here>
+
+### Get Loggs
+GET http://localhost:5152/api/logs
+Accept: application/json
+Authorization: Bearer <Your Token here>
+
+
+

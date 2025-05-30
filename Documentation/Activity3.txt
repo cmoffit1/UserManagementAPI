@@ -1,0 +1,32 @@
+I asked copilot:
+I would like middlware to write to logs the following details of each request: HTTP method, request path, and response status code. I would like it modular. If there is built in middleware, I would prefer that.
+
+It indicated there is no built in middleware and wrote me some code.  which I put in a new folder for Middleware and then used app.UseRequestLogging() in my Program.cs.  
+
+I then asked it for a route to view the logs.  It stopped using the logger that it was using before and moved it to writing it in a file.  it then also added a controller to create the routes.
+
+I added a route to the UserManagementAPI.http to test out the get logs route after running all the other routes
+
+
+Now for error handling
+I asked copilot to implement error handling middleware with the specific json format as requested and specfied I want any built in options first.  
+I did exactly that.  It used the built in UseExceptinoHandler with the options set as requested.
+
+Authentication middleware with Tokens
+Copilot recommends using JWT Bearer authentication because it is the most common built in method and is widely supported. 
+The implementation affects the Controllers and program.cs.  
+
+
+Configure the pipeline
+
+I moved logging down past authorization and authentication because copilot had not done that.  
+
+Testing:
+I tried my existing routes in UserManagementAPI.http but I don't have any tokens, so I get 401 unauthorized
+
+I then asked copilot to help me get the tokens for testing.
+It had me implement an AuthController and showed me how to call it from my UserManagementAPI.http and how to add the authorization to the header for every call after I have run the login code.
+
+During my testing of the authorization, I got a 500 internal server error.  The global error handling is working.
+I had to troubleshoot but Copilot could not help. I looked at the error in the terminal and found the line where the SH256 key was less than 256 bits, and I told copilot.  It then told me to increase my key size. 
+

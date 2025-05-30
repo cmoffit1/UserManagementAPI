@@ -1,0 +1,15 @@
+I choose to add the controller and model folders and use the .http file for testing
+
+I asked copilot to build me a User that had an Id, first name, last name, email address and department.  
+I then asked it to add in validation and make fields required and address the null string issue.
+
+I then asked it to build my Controller for Crud operations. 
+It named the file and built all the code. 
+
+I then asked it to use best practices for the Program.cs  
+
+I asked it to create the tests cases in the .http file
+
+I ran into trouble because I forgot how to use the http file, but copilot and I worked together and it eventually told me to click on the "Send Request" text which worked.
+
+All the code and tests work perfectly.  
